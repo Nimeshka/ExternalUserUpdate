@@ -1,0 +1,11 @@
+[Unit]
+After=network.target
+
+[Service]
+ExecStart=/opt/commercial/externalUsers.py
+; User=nimeshka
+WorkingDirectory=/opt/commercial/
+
+[Install]
+WantedBy=default.target
+
