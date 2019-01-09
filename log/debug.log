@@ -1,0 +1,26 @@
+2019-01-09 17:03:57,035 - INFO - Logging configuration loaded from config file.
+2019-01-09 17:03:57,036 - INFO - Service Started!
+2019-01-09 17:03:57,039 - INFO - Recieved file: SampleTestFile1-Revised.txt
+2019-01-09 17:03:57,039 - INFO - Executing batch upsert!
+2019-01-09 17:03:59,478 - DEBUG - Upserted IDs: {}
+2019-01-09 17:03:59,478 - INFO - Result: Total Records found = 11, Matched = 11, Inserted = 0, Modified = 11, Upserted = 0
+2019-01-09 17:03:59,478 - INFO - Moving SampleTestFile1-Revised.txt to /var/www/facetone/Commercial/processed_files/SampleTestFile1-Revised.txt
+2019-01-09 17:04:49,507 - INFO - Recieved file: SampleTestFile1-Revised.txt
+2019-01-09 17:04:49,508 - INFO - Executing batch upsert!
+2019-01-09 17:04:49,816 - DEBUG - Upserted IDs: {}
+2019-01-09 17:04:49,816 - INFO - Result: Total Records found = 11, Matched = 11, Inserted = 0, Modified = 11, Upserted = 0
+2019-01-09 17:04:49,816 - INFO - Moving SampleTestFile1-Revised.txt to /var/www/facetone/Commercial/processed_files/SampleTestFile1-Revised.txt
+2019-01-09 21:04:30,654 - INFO - Logging configuration loaded from config file.
+2019-01-09 21:04:30,654 - INFO - Service Started!
+2019-01-09 21:04:30,667 - INFO - Recieved file: SampleTestFile1-Revised.txt
+2019-01-09 21:04:30,668 - INFO - Executing batch upsert!
+2019-01-09 21:04:33,421 - DEBUG - Upserted IDs: {}
+2019-01-09 21:04:33,421 - INFO - Result: Total Records found = 11, Matched = 11, Inserted = 0, Modified = 11, Upserted = 0
+2019-01-09 21:04:33,422 - INFO - Moving SampleTestFile1-Revised.txt to /var/www/facetone/Commercial/processed_files/SampleTestFile1-Revised.txt
+2019-01-09 21:16:18,542 - INFO - Logging configuration loaded from config file.
+2019-01-09 21:16:18,542 - INFO - Service Started!
+2019-01-09 21:17:38,613 - INFO - Recieved file: SampleTestFile1-Revised.txt
+2019-01-09 21:17:38,614 - INFO - Executing batch upsert!
+2019-01-09 21:17:41,115 - DEBUG - Upserted IDs: {}
+2019-01-09 21:17:41,115 - INFO - Result: Total Records found = 11, Matched = 11, Inserted = 0, Modified = 11, Upserted = 0
+2019-01-09 21:17:41,115 - INFO - Moving SampleTestFile1-Revised.txt to /var/www/facetone/Commercial/processed_files/SampleTestFile1-Revised.txt
