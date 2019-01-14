@@ -43,6 +43,10 @@ try:
     client = MongoClient(con_string)
     db = client.dvpdb
     external_users = db.externalusers
+
+    # company configurations
+    company_id = int(config.get('organization', 'company'))
+    tenant_id = int(config.get('organization', 'tenant'))
 except Exception, e:
     logging.exception(e)
     raise
@@ -80,7 +84,9 @@ def main():
                                         { 
                                             "firstname": customer_name[1].strip() if len(customer_name) > 1 else '',
                                             "lastname": customer_name[0].strip(),
-                                            "phone": customer_data[2]
+                                            "phone": customer_data[2],
+                                            "company" : company_id,
+                                            "tenant" : tenant_id
                                         },
                                     }
                                 , upsert=True)
