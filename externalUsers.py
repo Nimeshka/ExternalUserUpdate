@@ -86,7 +86,8 @@ def main():
                                             "lastname": customer_name[0].strip(),
                                             "phone": customer_data[2],
                                             "company" : company_id,
-                                            "tenant" : tenant_id
+                                            "tenant" : tenant_id,
+                                            "thirdpartyreference": customer_data[1]
                                         },
                                     }
                                 , upsert=True)
