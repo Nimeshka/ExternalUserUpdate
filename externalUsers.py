@@ -6,7 +6,7 @@ import glob
 import logging
 import datetime
 import ConfigParser
-from pymongo import MongoClient, UpdateOne
+from pymongo import MongoClient, UpdateOne, errors
 
 config = ConfigParser.RawConfigParser()
 config.read("config.ini")
@@ -62,8 +62,8 @@ def main():
 
         while True:
             
-            for file in glob.glob("*.txt"):
-                with open(file) as fp:  
+            for file in sorted(glob.glob("*.txt"), key=os.path.getctime):
+                with open(file) as fp:
                     operations = []
                     line = fp.readline()
                     logging.info("Recieved file: " + file)
@@ -71,7 +71,7 @@ def main():
                     while line:
                         line = line.strip()
                         customer_data = line.split('|')
-
+                        
                         if len(customer_data) == 4:
                             customer_name = customer_data[0].split(',')
                             operations.append(
@@ -94,20 +94,30 @@ def main():
                             )
 
                         line = fp.readline()
-                    
-                    logging.info("Executing batch upsert!")
 
-                    result = external_users.bulk_write(operations)
+                    if len(operations) > 0:    
+                        logging.info("Executing batch upsert!")
 
-                    logging.debug("Upserted IDs: " + str(result.upserted_ids))
+                        try:
+                            result = external_users.bulk_write(operations, ordered=False)
 
-                    logging.info("Result: Total Records found = {}, Matched = {}, Inserted = {}, Modified = {}, Upserted = {}".format(
-                        len(operations), result.matched_count, result.inserted_count, result.modified_count, result.upserted_count
-                    ))
+                            # Upserted IDs are not required to log.
+                            # logging.debug("Upserted IDs: " + str(result.upserted_ids))
 
-                    # move the current file to the processed directory
-                    logging.info("Moving {} to {}".format(file, processed_dir + "/" + file))
-                    os.rename(file, processed_dir + "/" + file)
+                            logging.info("Result: Total Records found = {}, Matched = {}, Inserted = {}, Modified = {}, Upserted = {}".format(
+                                len(operations), result.matched_count, result.inserted_count, result.modified_count, result.upserted_count
+                            ))
+                            
+                        except errors.BulkWriteError as be:
+                            logging.debug("Bulk operation completed with some errors:")
+                            logging.info(be.details)
+                        
+                    else:
+                        logging.info("No records to update.")
+
+                     # move the current file to the processed directory
+                    logging.info("Moving {} to {}".format(file, processed_dir + "/" + file + "._" + str(time.time())))
+                    os.rename(file, processed_dir + "/" + file + "._" + str(time.time()))
 
             time.sleep(10)
 
