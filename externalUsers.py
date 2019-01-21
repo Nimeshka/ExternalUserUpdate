@@ -41,7 +41,7 @@ try:
                                 )
 
     client = MongoClient(con_string)
-    db = client.dvpdb
+    db = client[config.get('mongo', 'database')]
     external_users = db.externalusers
 
     # company configurations
